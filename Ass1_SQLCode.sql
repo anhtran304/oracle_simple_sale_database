@@ -25,7 +25,6 @@ begin
     dbms_output.put_line('Adding Customer ' || pcustid || ' ' || pcustname);
     ADD_CUST_TO_DB(pcustid, pcustname);
     dbms_output.put_line('Customer Added OK');
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -54,7 +53,6 @@ begin
     dbms_output.put_line('Deleting all Customer rows');
     vCount := DELETE_ALL_CUSTOMERS_FROM_DB();
     dbms_output.put_line(vCount || ' rows deleted');
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -95,7 +93,6 @@ begin
     dbms_output.put_line('Adding Product ' || pprodid || ' Name: ' || pprodname || ' Price: ' || pprice);
     ADD_PROD_TO_DB(pprodid, pprodname, pprice);
     dbms_output.put_line('Product Added OK');
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -122,7 +119,6 @@ begin
     dbms_output.put_line('Deleting all Product rows');
     vCount := DELETE_ALL_PRODUCTS_FROM_DB();
     dbms_output.put_line(vCount || ' rows deleted');
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -154,7 +150,6 @@ begin
     dbms_output.put_line('-----------------------------');
     dbms_output.put_line('Getting Details for CustId ' || pcustid);
     dbms_output.put_line(GET_CUST_STRING_FROM_DB(pcustid));
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -190,7 +185,6 @@ begin
     dbms_output.put_line('Updatting SalesYTD. Customer Id: ' || pcustid || ' Amount: ' || pamt);
     UPD_CUST_SALESYTD_IN_DB(pcustid, pamt);
     dbms_output.put_line('Update Ok');
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -223,7 +217,6 @@ begin
     dbms_output.put_line('-----------------------------');
     dbms_output.put_line('Getting Details for Prod Id ' || pprodid);
     dbms_output.put_line(GET_PROD_STRING_FROM_DB(pprodid));
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -259,7 +252,6 @@ begin
     dbms_output.put_line('Updatting SalesYTD. Product Id: ' || pprodid || ' Amount: ' || pamt);
     UPD_PROD_SALESYTD_IN_DB(pprodid, pamt);
     dbms_output.put_line('Update Ok');
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -298,7 +290,6 @@ begin
     dbms_output.put_line('Updatting Status. Customer Id: ' || pcustid || ' New Status: ' || pstatus);
     UPD_CUST_STATUS_IN_DB(pcustid, pstatus);
     dbms_output.put_line('Update Ok');
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -371,7 +362,6 @@ begin
     dbms_output.put_line('Adding Simple Sales. Cust Id: ' || pcustid || ' Prod Id: ' || pprodid || ' Qty: ' || pqty);
     ADD_SIMPLE_SALE_TO_DB(pcustid, pprodid, pqty);
     dbms_output.put_line('Added Simple Sale Ok');
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -473,7 +463,6 @@ begin
         dbms_output.put_line('Custid: ' || reccust.Custid || ' Name: ' || reccust.Custname || ' Status: ' || reccust.Status || ' SalesYTD: ' || reccust.Sales_YTD);
     end loop;
     close rv_sysrefcur;
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -505,7 +494,6 @@ begin
         dbms_output.put_line('Prodid: ' || recprod.Prodid || ' Name: ' || recprod.Prodname || ' Price: ' || recprod.Selling_price || ' SalesYTD: ' || recprod.Sales_YTD);
     end loop;
     close rv_sysrefcur;
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -562,7 +550,6 @@ begin
     dbms_output.put_line('Adding Location LocCode: ' || ploccode || ' MinQty: ' || pminqty || ' MaxQty: ' || pmaxqty);
     ADD_LOCATION_TO_DB(ploccode, pminqty, pmaxqty);
     dbms_output.put_line('Location Added OK');
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -642,7 +629,6 @@ begin
     dbms_output.put_line('Adding Complex Sales. Cust Id: ' || pcustid || ' Prod Id: ' || pprodid || ' Date: ' || pdate || ' Amount: ' || (pqty * vPrice));
     ADD_COMPLEX_SALE_TO_DB(pcustid, pprodid, pqty, pdate);
     dbms_output.put_line('Added Complex Sale Ok');
-    commit;
 exception
     when OTHERS then
         dbms_output.put_line(sqlerrm);
@@ -674,7 +660,6 @@ begin
         dbms_output.put_line('Saleid: ' || recsale.saleid || ' Custid: ' || recsale.custid || ' Prodid: ' || recsale.prodid || ' Date: ' || TO_CHAR(recsale.saledate, 'YYYYMMDD') || ' Amount: ' || (recsale.qty * recsale.price) );
     end loop;
     close rv_sysrefcur;
-    commit;
 exception
     when OTHERS then
         dbms_output.put_line(sqlerrm);
@@ -765,7 +750,6 @@ begin
     dbms_output.put_line('Deleting Sale with smallest SaleId value');
     vSaleid := DELETE_SALE_FROM_DB;
     dbms_output.put_line('Deleted Sale OK. SaleId: ' || vSaleid);
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -805,7 +789,6 @@ begin
     dbms_output.put_line('Deleting all Sale data in Sale, Customer, and Product tables');
     DELETE_ALL_SALES_FROM_DB;
     dbms_output.put_line('Deletion OK');
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -839,7 +822,6 @@ begin
     dbms_output.put_line('Deleting Customer. Cust Id: ' || pcustid);
     DELETE_CUSTOMER(pcustid);
     dbms_output.put_line('Deleted Customer OK');
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
@@ -872,7 +854,6 @@ begin
     dbms_output.put_line('Deleting Product. Prod Id: ' || pprodid);
     DELETE_PROD_FROM_DB(pprodid);
     dbms_output.put_line('Deleted Product OK');
-    commit;
 exception
   when OTHERS then
     dbms_output.put_line(sqlerrm);
