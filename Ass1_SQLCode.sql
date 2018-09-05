@@ -859,3 +859,22 @@ exception
     dbms_output.put_line(sqlerrm);
 end;
 /
+
+Create or Replace Package pckg_get_details as 
+Procedure GetCusDetails (custRefCur OUT SYS_REFCURSOR);
+Procedure GetProdDetails (prodRefCur Out SYS_REFCURSOR);
+End pckg_get_details;
+/
+Create or Replace Package Body pckg_get_details as 
+    Procedure GetCusDetails(custRefCur Out SYS_REFCURSOR) As
+    begin
+        custRefCur := GET_ALLCUST();
+    end GetCusDetails;
+
+    Procedure GetProdDetails(prodRefCur Out SYS_REFCURSOR) As
+    begin
+        prodRefCur := GET_ALLPROD_FROM_DB();
+    end GetProdDetails;
+
+End pckg_get_details;
+
